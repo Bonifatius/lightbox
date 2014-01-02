@@ -38,16 +38,9 @@ class Lightbox
     translate_x = Math.round(translate_x) - ((image_width + target_width) % 2) * 0.5
     translate_y = Math.round(translate_y) - ((image_height + target_height) % 2) * 0.5
 
-    @strip()
-
+    @elements.removeClass 'lightbox-focus'
     element.addClass 'lightbox-opened lightbox-focus'
-    element.children('img').css
-      'width': image_width + 'px',
-      'height': image_height + 'px'
-
     @background.addClass 'lightbox-background-show'
-    #@background.css 'background', element.attr('data-color')
-    
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
   minimize: (element) ->
@@ -65,13 +58,6 @@ class Lightbox
     element = $(event.target).parent()
     element.addClass 'lightbox-animate'
     if element.hasClass 'lightbox-opened' then @minimize(element) else @maximize(element)
-
-  strip: ->
-    for element in @elements
-      $(element).children('img').css
-        'width': '100%',
-        'height': '100%'
-    @elements.removeClass 'lightbox-focus'
 
   clear: (animate = false) ->
     for element in @elements
