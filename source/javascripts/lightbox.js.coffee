@@ -45,6 +45,8 @@ class Lightbox
     if element.attr 'data-hires'
       unless element.attr 'data-lighbox-hires'
         element.children('img').css 'background-image', "url('#{element.children('img').attr('src')}')"
+        element.children('img').load ->
+          $(this).css 'background-image', 'none'
         element.children('img').attr 'src', element.attr 'data-hires'
         element.attr 'data-lighbox-hires', 'true'
     
