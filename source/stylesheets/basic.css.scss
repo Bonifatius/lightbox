@@ -49,6 +49,12 @@ div[data-lighbox]
   cursor: -webkit-zoom-in;
   cursor:    -moz-zoom-in;
 
+  img
+  {
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   &.lightbox-animate
   {
     img

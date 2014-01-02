@@ -3,7 +3,7 @@ class Lightbox
   constructor: (@elements) ->
     @settings = { padding: 12 }
     
-    @elements.attr('data-lighbox', 'true')
+    @elements.attr 'data-lighbox', 'true'
     @elements.click @click
 
     @background = $('<div class="lightbox-background"></div>').appendTo($('body'))
@@ -39,7 +39,16 @@ class Lightbox
     translate_y = Math.round(translate_y) - ((image_height + target_height) % 2) * 0.5
 
     @elements.removeClass 'lightbox-focus'
+    
     element.addClass 'lightbox-opened lightbox-focus'
+    
+    unless element.attr 'data-lighbox-image'
+    
+      element.children('img').css
+        'background-image': "url('#{element.children('img').attr('src')}')"
+        #element.children('img').attr 'src', '/images/empty.png'
+        element.attr 'data-lighbox-image', 'true'
+    
     @background.addClass 'lightbox-background-show'
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
