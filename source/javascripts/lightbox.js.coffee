@@ -42,12 +42,11 @@ class Lightbox
     
     element.addClass 'lightbox-opened lightbox-focus'
     
-    unless element.attr 'data-lighbox-image'
-    
-      element.children('img').css
-        'background-image': "url('#{element.children('img').attr('src')}')"
-        #element.children('img').attr 'src', '/images/empty.png'
-        element.attr 'data-lighbox-image', 'true'
+    if element.attr 'data-hires'
+      unless element.attr 'data-lighbox-hires'
+        element.children('img').css 'background-image', "url('#{element.children('img').attr('src')}')"
+        element.children('img').attr 'src', element.attr 'data-hires'
+        element.attr 'data-lighbox-hires', 'true'
     
     @background.addClass 'lightbox-background-show'
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
