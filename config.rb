@@ -13,7 +13,7 @@ configure :build do
   activate :minify_javascript
   activate :minify_css
 
-  set :http_prefix, '/zoom'
+  set :http_prefix, '/lightbox'
 
   ignore /^.*\.scss/
   ignore /^.*\.coffee/
