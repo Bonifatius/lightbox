@@ -2,7 +2,7 @@
 
 This is a simple lightbox class built with CoffeeScript. See the demo at [recurving.github.io/lightbox](http://recurving.github.io/lightbox).
 
-Inspired by [Fluidbox](http://codepen.io/terrymun/full/JKHwp) and how [Medium](http://medium.com) handles images. I wanted to get rid of *blurry* edges caused by sub-pixel positioning and make a version that fits more my needs (I am using [this method](http://alistapart.com/article/creating-intrinsic-ratios-for-video) to resize images).
+Inspired by [Fluidbox](http://codepen.io/terrymun/full/JKHwp) and how [Medium](http://medium.com) handles images I wanted to make a lighbox module using CSS-transforms without having *blurry* edges caused by sub-pixel positioning. Also it should fit more my needs as I am mostly using [this method](http://alistapart.com/article/creating-intrinsic-ratios-for-video) to resize images.
 
 ## Example usage
 
