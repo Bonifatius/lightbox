@@ -77,14 +77,13 @@ class Lightbox
         @minimize(element)
 
   load: (element) ->
-    #console.log element
     if element.attr 'data-image-large'
-      unless element.attr 'data-image-large-loaded'
+      unless element.attr 'data-image-large-replaced'
         element.css 'background-image', "url('#{element.attr('src')}')"
         element.load ->
           $(this).css 'background-image', 'none'
         element.attr 'src', element.attr 'data-image-large'
-        element.attr 'data-image-large-loaded', 'true'
+        element.attr 'data-image-large-replaced', 'true'
 
 $ ->
   new Lightbox($('img')) if Modernizr.csstransforms
