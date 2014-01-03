@@ -29,6 +29,11 @@ section
   }
 }
 
+img
+{
+  position: relative;
+}
+
 div.asset
 {
   position: relative;
@@ -44,30 +49,18 @@ div.asset
   }
 }
 
-div[data-lighbox]
+img[data-lighbox]
 {
   cursor: -webkit-zoom-in;
   cursor:    -moz-zoom-in;
-
-  img
-  {
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
+  background-repeat: no-repeat;
+  background-size: cover;
 
   &.lightbox-animate
   {
-    img
-    {
-      @include transition-property (transform);
-      @include transition-duration(250ms);
-      @include transition-timing-function(ease-in-out);
-    }
-  }
-
-  &.lightbox-focus
-  {
-    z-index: 1;
+    @include transition-property (transform);
+    @include transition-duration(250ms);
+    @include transition-timing-function(ease-in-out);
   }
 
   &.lightbox-opened
