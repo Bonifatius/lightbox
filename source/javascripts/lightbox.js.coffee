@@ -1,11 +1,9 @@
 class Lightbox
 
-  constructor: (@elements) ->
-    @settings = { padding: 12 }
-
+  constructor: (@elements, @padding = 12) ->
     @elements.attr 'data-lighbox', 'true'
     @elements.click @click
-    
+
     @background = $('<div class="lightbox-background"></div>').appendTo($('body'))
     @background.click => @collapse(true)
 
@@ -17,8 +15,8 @@ class Lightbox
     image_height = element.height()
     image_ratio = image_width / image_height
 
-    zoom_width = $(window).width() - @settings.padding * 2
-    zoom_height = $(window).height() - @settings.padding * 2
+    zoom_width = $(window).width() - @padding * 2
+    zoom_height = $(window).height() - @padding * 2
     zoom_width = Math.min(zoom_width, Number(element.attr('data-max-width'))) unless Number(element.attr('data-max-width')) == NaN
     zoom_height = Math.min(zoom_height, Number(element.attr('data-max-height'))) unless Number(element.attr('data-max-height')) == NaN
     zoom_ratio = zoom_width / zoom_height
