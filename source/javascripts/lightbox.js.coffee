@@ -8,6 +8,7 @@ class Lightbox
     @background.click => @collapse(true)
 
     $(window).resize => @collapse(false)
+    $(window).scroll => @collapse(true)
     $(window).keyup => @collapse(true) if event.keyCode == 27
 
   maximize: (element) ->
