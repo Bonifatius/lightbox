@@ -10,28 +10,41 @@ html
 body
 {
   background: #ffffff;
-  font: 12px/1.75 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;
+  font: 13px/1.8 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif;
   color: #000000;
-  padding: 64px 32px;
+  padding: 64px;
+}
+
+a
+{
+  color: #0080bf;
+
+  &:hover
+  {
+    text-decoration: underline;
+  }
+}
+
+section, footer, header
+{
+  max-width: 384px;
 }
 
 section
 {
-  max-width: 448px;
-  margin: 0 auto;
+  margin: 32px auto;
+}
 
-  p
-  {
-    & + p
-    {
-      margin-top: 1.75 * 12px;
-    }
-  }
+header, footer
+{
+  margin: 0 auto;
 }
 
 img
 {
   position: relative;
+  width: 100%;
+  height: auto;
 }
 
 div.asset
@@ -94,5 +107,19 @@ div.lightbox-background
   {
     visibility: visible;
     cursor: auto;
+  }
+}
+
+@media screen and (max-width: 568px)
+{
+  body
+  {
+    padding: 16px;
+    font-size: 11px;
+  }
+
+  section
+  {
+    margin: 16px auto;
   }
 }

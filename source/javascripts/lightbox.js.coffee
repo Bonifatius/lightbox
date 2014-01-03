@@ -1,6 +1,6 @@
 class Lightbox
 
-  constructor: (@elements, @padding = 12) ->
+  constructor: (@elements, @padding = 16) ->
     @elements.attr 'data-lighbox', 'true'
     @elements.click @click
 
@@ -20,7 +20,7 @@ class Lightbox
     zoom_width = Math.min(zoom_width, Number(element.attr('data-max-width'))) unless Number(element.attr('data-max-width')) == NaN
     zoom_height = Math.min(zoom_height, Number(element.attr('data-max-height'))) unless Number(element.attr('data-max-height')) == NaN
     zoom_ratio = zoom_width / zoom_height
-    if image_ratio < zoom_ratio then target_height = zoom_height else zoom_height = Math.round(zoom_width / image_ratio)
+    if image_ratio < zoom_ratio then zoom_width = Math.round(zoom_height * image_ratio) else zoom_height = Math.round(zoom_width / image_ratio)
 
     scale_x = zoom_width / image_width
     scale_y = zoom_height / image_height
