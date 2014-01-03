@@ -36,11 +36,12 @@ class Lightbox
     @background.addClass 'lightbox-background-show'
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
-  minimize: (element) ->
+  minimize: (element, animate = true) ->
     element.removeClass 'lightbox-opened'
     @background.removeClass 'lightbox-background-show'
-    @background.addClass 'lightbox-background-close'
-    setTimeout (=> @background.removeClass 'lightbox-background-close'), 250
+    if animate
+      @background.addClass 'lightbox-background-close'
+      setTimeout (=> @background.removeClass 'lightbox-background-close'), 250
     @zoom(element, "translate(0, 0) scale(1, 1)")
 
   zoom: (element, transform) ->
@@ -59,12 +60,12 @@ class Lightbox
       element = $(element)
       if element.parent('div.asset').length == 0 then element.css('z-index', 'auto') else element.parent('div.asset').css('z-index', 'auto')
 
-  collapse: (animate = false) ->
+  collapse: (animate = true) ->
     for element in @elements
       element = $(element)
       if element.hasClass 'lightbox-opened'
         element.removeClass 'lightbox-animate' unless animate
-        @minimize(element)
+        @minimize(element, animate)
 
   load: (element) ->
     if element.attr 'data-image-large'
