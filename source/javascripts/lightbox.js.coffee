@@ -2,7 +2,7 @@ class Lightbox
 
   constructor: (@elements) ->
     @settings = { padding: 12 }
-    
+
     @elements.attr 'data-lighbox', 'true'
     @elements.click @click
 
@@ -39,17 +39,8 @@ class Lightbox
     translate_y = Math.round(translate_y) - ((image_height + target_height) % 2) * 0.5
 
     @elements.removeClass 'lightbox-focus'
-    
     element.addClass 'lightbox-opened lightbox-focus'
-    
-    if element.attr 'data-hires'
-      unless element.attr 'data-lighbox-hires'
-        element.children('img').css 'background-image', "url('#{element.children('img').attr('src')}')"
-        element.children('img').load ->
-          $(this).css 'background-image', 'none'
-        element.children('img').attr 'src', element.attr 'data-hires'
-        element.attr 'data-lighbox-hires', 'true'
-    
+    @load(element)
     @background.addClass 'lightbox-background-show'
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
@@ -75,6 +66,15 @@ class Lightbox
       if element.hasClass 'lightbox-opened'
         element.removeClass 'lightbox-animate' unless animate
         @minimize(element)
+
+  load: (element) ->
+    if element.attr 'data-image-large'
+      unless element.attr 'data-image-large-loaded'
+        element.children('img').css 'background-image', "url('#{element.children('img').attr('src')}')"
+        element.children('img').load ->
+          $(this).css 'background-image', 'none'
+        element.children('img').attr 'src', element.attr 'data-image-large'
+        element.attr 'data-image-large-loaded', 'true'
 
 $ ->
   new Lightbox($('div.asset')) if Modernizr.csstransforms
