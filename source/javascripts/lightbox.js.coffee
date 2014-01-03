@@ -22,21 +22,13 @@ class Lightbox
     zoom_width = Math.min(zoom_width, Number(element.attr('data-max-width'))) unless Number(element.attr('data-max-width')) == NaN
     zoom_height = Math.min(zoom_height, Number(element.attr('data-max-height'))) unless Number(element.attr('data-max-height')) == NaN
     zoom_ratio = zoom_width / zoom_height
+    if image_ratio < zoom_ratio then target_height = zoom_height else zoom_height = Math.round(zoom_width / image_ratio)
 
-    if image_ratio < zoom_ratio
-      target_width = Math.round(zoom_height * image_ratio)
-      target_height = zoom_height
-    else
-      target_width = zoom_width
-      target_height = Math.round(zoom_width / image_ratio)
+    scale_x = zoom_width / image_width
+    scale_y = zoom_height / image_height
 
-    scale_x = target_width / image_width
-    scale_y = target_height / image_height
-
-    translate_x = $(window).scrollLeft() + 0.5 * $(window).width() - element.offset().left - 0.5 * image_width
-    translate_y = $(window).scrollTop() + 0.5 * $(window).height() - element.offset().top - 0.5 * image_height
-    translate_x = Math.round(translate_x) - ((image_width + target_width) % 2) * 0.5
-    translate_y = Math.round(translate_y) - ((image_height + target_height) % 2) * 0.5
+    translate_x = Math.round($(window).scrollLeft() + 0.5 * $(window).width() - element.offset().left - 0.5 * image_width) - ((image_width + zoom_width) % 2) * 0.5
+    translate_y = Math.round($(window).scrollTop() + 0.5 * $(window).height() - element.offset().top - 0.5 * image_height) - ((image_height + zoom_height) % 2) * 0.5
 
     @clear()
     element.addClass 'lightbox-opened'
@@ -80,8 +72,7 @@ class Lightbox
     if element.attr 'data-image-large'
       unless element.attr 'data-image-large-replaced'
         element.css 'background-image', "url('#{element.attr('src')}')"
-        element.load ->
-          $(this).css 'background-image', 'none'
+        element.load -> $(this).css 'background-image', 'none'
         element.attr 'src', element.attr 'data-image-large'
         element.attr 'data-image-large-replaced', 'true'
 
