@@ -72,7 +72,7 @@ img[data-lighbox]
 
 div.lightbox-background
 {
-  background: #f20000;
+  background: #ffffff;
   @include transition (opacity 250ms ease-in-out);
   opacity: 0.0;
   visibility: hidden;
@@ -86,7 +86,13 @@ div.lightbox-background
 
   &.lightbox-background-show
   {
-    opacity: 0.9;
+    opacity: 0.95;
     visibility: visible;
+  }
+
+  &.lightbox-background-close
+  {
+    visibility: visible;
+    cursor: auto;
   }
 }

@@ -49,6 +49,8 @@ class Lightbox
   minimize: (element) ->
     element.removeClass 'lightbox-opened'
     @background.removeClass 'lightbox-background-show'
+    @background.addClass 'lightbox-background-close'
+    setTimeout (=> @background.removeClass 'lightbox-background-close'), 250
     @zoom(element, "translate(0, 0) scale(1, 1)")
 
   zoom: (element, transform) ->
