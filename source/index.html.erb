@@ -2,19 +2,19 @@
   <p>Click/tap on any image to open the lighbox. To close it click/Tap then anywhere on the screen or use ESC.</p>
 </header>
 
-<section>
+<section class="left landscape">
   <div class="asset" data-ratio="1.500" style="padding-bottom: 66.667%;">
     <%= image_tag('tsutaya-landscape-large.jpg', :'data-max-width' => 1500, :'data-max-height' => 1000) %>
   </div>
 </section>
 
-<section>
+<section class="right portrait">
   <div class="asset" data-ratio="0.667" style="padding-bottom: 150.000%;">
     <%= image_tag('tsutaya-portrait-small.jpg', :'data-max-width' => 1000, :'data-max-height' => 1500, :'data-image-large' => image_path('tsutaya-portrait-large.jpg')) %>
   </div>
 </section>
 
-<section>
+<section class="center landscape">
   <%= image_tag('saturdays-landscape-large.jpg', :width => 384, :height => 256, :'data-max-width' => 1500, :'data-max-height' => 1000) %>
 </section>
 

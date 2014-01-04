@@ -25,14 +25,35 @@ a
   }
 }
 
-section, footer, header
-{
-  max-width: 384px;
-}
-
 section
 {
-  margin: 32px auto;
+  margin: 32px 0;
+
+  &.landscape
+  {
+    max-width: 576px;
+  }
+
+  &.portrait
+  {
+    max-width: 384px;
+  }
+
+  &.left
+  {
+    margin-right: auto;
+  }
+
+  &.center
+  {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &.right
+  {
+    margin-left: auto;
+  }
 }
 
 header, footer
@@ -120,6 +141,7 @@ div.lightbox-background
 
   section
   {
-    margin: 16px auto;
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
 }
