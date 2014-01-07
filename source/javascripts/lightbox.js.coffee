@@ -4,7 +4,8 @@ class Lightbox
     @elements.attr 'data-lighbox', 'true'
     @elements.click @click
 
-    @background = $('<div class="lightbox-background"></div>').appendTo($('body'))
+    $('body').css 'position', 'relative'
+    @background = $('<div class="lightbox-background"></div>').prependTo($('body'))
     @background.click => @collapse(true)
 
     $(window).resize => @collapse(false)
@@ -31,7 +32,7 @@ class Lightbox
 
     @clear()
     element.addClass 'lightbox-opened'
-    if element.parent('div.asset').length == 0 then element.css('z-index', 1) else element.parent('div.asset').css('z-index', 1)
+    element.css 'z-index', 2
 
     @load(element)
     @background.addClass 'lightbox-background-show'
@@ -58,8 +59,7 @@ class Lightbox
 
   clear: ->
     for element in @elements
-      element = $(element)
-      if element.parent('div.asset').length == 0 then element.css('z-index', 'auto') else element.parent('div.asset').css('z-index', 'auto')
+      $(element).css 'z-index', 'auto'
 
   collapse: (animate = true) ->
     for element in @elements

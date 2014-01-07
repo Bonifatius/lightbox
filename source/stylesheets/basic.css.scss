@@ -89,6 +89,7 @@ img[data-lighbox]
   cursor:    -moz-zoom-in;
   background-repeat: no-repeat;
   background-size: cover;
+  opacity: 1;
 
   &.lightbox-animate
   {
@@ -110,9 +111,10 @@ div.lightbox-background
   @include transition (opacity 250ms ease-in-out);
   opacity: 0.0;
   visibility: hidden;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
+  z-index: 1;
   right: 0;
   bottom: 0;
   cursor: -webkit-zoom-out;
