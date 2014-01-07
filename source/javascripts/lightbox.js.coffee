@@ -5,7 +5,7 @@ class Lightbox
     @elements.click @click
 
     $('body').css 'position', 'relative'
-    @background = $('<div class="lightbox-background"></div>').prependTo($('body'))
+    @background = $('<div class="lightbox-background"></div>').appendTo($('body'))
     @background.click => @collapse(true)
 
     $(window).resize => @collapse(false)
@@ -32,7 +32,7 @@ class Lightbox
 
     @clear()
     element.addClass 'lightbox-opened'
-    element.css 'z-index', 2
+    element.css 'z-index', 1
 
     @load(element)
     @background.addClass 'lightbox-background-show'
