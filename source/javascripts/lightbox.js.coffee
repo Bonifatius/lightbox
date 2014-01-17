@@ -9,10 +9,12 @@ class Lightbox
     @background.click => @collapse(true)
 
     $(window).resize => @collapse(false)
-    $(window).scroll => @collapse(true)
+    $(window).scroll => @collapse(true) if Math.abs($(window).scrollTop() - @scroll_top || $(window).scrollTop()) > @padding
     $(window).keyup => @collapse(true) if event.keyCode == 27
 
   maximize: (element) ->
+    @scroll_top = $(window).scrollTop()
+
     image_width = element.width()
     image_height = element.height()
     image_ratio = image_width / image_height
