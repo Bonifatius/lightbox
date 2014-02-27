@@ -1,21 +1,35 @@
 <header>
-  <p>Click/tap on any image to open the lighbox. To close it click/Tap then anywhere on the screen or use ESC.</p>
+  <p>Click/tap on any image to open the lighbox. To close it click/tap then anywhere on the screen or use ESC. On the desktop you can use left and right to cycle through the photos.</p>
 </header>
 
-<section class="left landscape">
-  <div class="asset" data-ratio="1.500" style="padding-bottom: 66.667%;">
-    <%= image_tag('tsutaya-landscape-large.jpg', :'data-max-width' => 1500, :'data-max-height' => 1000) %>
+<section>
+  <div class="asset" data-ratio="1.5" style="padding-bottom: 66.667%;">
+    <%= image_tag('image_01_small.jpg', :'data-max-width' => 1800, :'data-max-height' => 1200, :'data-image-large' => image_path('image_01_large.jpg')) %>
   </div>
 </section>
 
-<section class="right portrait">
-  <div class="asset" data-ratio="0.667" style="padding-bottom: 150.000%;">
-    <%= image_tag('tsutaya-portrait-small.jpg', :'data-max-width' => 1000, :'data-max-height' => 1500, :'data-image-large' => image_path('tsutaya-portrait-large.jpg')) %>
+<section>
+  <div class="asset" data-ratio="0.667" style="padding-bottom: 150%;">
+    <%= image_tag('image_02_small.jpg', :'data-max-width' => 1200, :'data-max-height' => 1800, :'data-image-large' => image_path('image_02_large.jpg')) %>
   </div>
 </section>
 
-<section class="center landscape">
-  <%= image_tag('saturdays-landscape-large.jpg', :width => 384, :height => 256, :'data-max-width' => 1500, :'data-max-height' => 1000) %>
+<section>
+  <div class="asset" data-ratio="1.5" style="padding-bottom: 66.667%;">
+    <%= image_tag('image_03_small.jpg', :'data-max-width' => 1800, :'data-max-height' => 1200, :'data-image-large' => image_path('image_03_large.jpg')) %>
+  </div>
+</section>
+
+<section>
+  <div class="asset" data-ratio="1.5" style="padding-bottom: 66.667%;">
+    <%= image_tag('image_04_small.jpg', :'data-max-width' => 1800, :'data-max-height' => 1200, :'data-image-large' => image_path('image_04_large.jpg')) %>
+  </div>
+</section>
+
+<section>
+  <div class="asset" data-ratio="0.667" style="padding-bottom: 150%;">
+    <%= image_tag('image_05_small.jpg', :'data-max-width' => 1200, :'data-max-height' => 1800, :'data-image-large' => image_path('image_05_large.jpg')) %>
+  </div>
 </section>
 
 <footer>

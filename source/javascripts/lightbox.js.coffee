@@ -10,7 +10,30 @@ class Lightbox
 
     $(window).resize => @collapse(false)
     $(window).scroll => @collapse(true) if Math.abs($(window).scrollTop() - @scroll_top || $(window).scrollTop()) > @padding
-    $(window).keyup => @collapse(true) if event.keyCode == 27
+    $(window).keyup @keyup
+
+  keyup: (event) =>
+    @collapse(true) if event.keyCode == 27
+    @show(true) if event.keyCode in [39, 74]
+    @show(false) if event.keyCode in [37, 75]
+
+  show: (next = true) ->
+    for element, element_index in @elements
+      if $(element).hasClass 'lightbox-opened'
+        index = element_index
+        break
+    if index?
+
+      element = $(@elements[index])
+      element.removeClass 'lightbox-animate'
+      element.removeClass 'lightbox-opened'
+      element.css 'z-index', 'auto'
+      @zoom(element, "translate(0, 0) scale(1, 1)")
+
+      index = if next then (index + 1) % @elements.length else (index - 1 + @elements.length) % @elements.length
+      element = $(@elements[index])
+      element.removeClass 'lightbox-animate'
+      @maximize(element)
 
   maximize: (element) ->
     @scroll_top = $(window).scrollTop()
@@ -67,7 +90,7 @@ class Lightbox
     for element in @elements
       element = $(element)
       if element.hasClass 'lightbox-opened'
-        element.removeClass 'lightbox-animate' unless animate
+        if animate then element.addClass 'lightbox-animate' else element.removeClass 'lightbox-animate'
         @minimize(element, animate)
 
   load: (element) ->

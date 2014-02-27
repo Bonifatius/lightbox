@@ -18,4 +18,4 @@ It looks like this then:
      data-image-large="large.jpg" data-max-width="1500" data-max-height="1000">
 ```
 
-Clicking on any image will open a lightbox with this image centered on the screen with the maximum size possible. By default the script opens every image in a lighbox (but you can change the selector of course). There is also a padding of 16 pixels which can be changed. The lightbox will be closed by resizing the browser (without animation), scrolling or pressing ESC (with animation).
+Clicking on any image will open a lightbox with this image centered on the screen with the maximum size possible. By default the script opens every image in a lighbox (but you can change the selector of course). There is also a padding of 16 pixels which can be changed. The lightbox will be closed by resizing the browser (without animation), scrolling or pressing ESC (with animation). One can cycle through the images using the arrow keys.

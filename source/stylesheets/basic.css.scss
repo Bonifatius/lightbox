@@ -25,40 +25,19 @@ a
   }
 }
 
-section
+header, section, footer
 {
-  margin: 32px 0;
-
-  &.landscape
-  {
-    max-width: 576px;
-  }
-
-  &.portrait
-  {
-    max-width: 384px;
-  }
-
-  &.left
-  {
-    margin-right: auto;
-  }
-
-  &.center
-  {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  &.right
-  {
-    margin-left: auto;
-  }
+  max-width: 600px;
 }
 
 header, footer
 {
   margin: 0 auto;
+}
+
+section
+{
+  margin: 64px auto;
 }
 
 img
@@ -142,7 +121,6 @@ div.lightbox-background
 
   section
   {
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin: 16px auto;
   }
 }
