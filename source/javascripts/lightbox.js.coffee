@@ -1,7 +1,7 @@
 class Lightbox
 
   constructor: (@elements, @padding = 16) ->
-    @elements.attr 'data-lighbox', 'true'
+    @elements.attr 'data-lightbox', 'true'
     @elements.click @click
 
     $('body').css 'position', 'relative'
