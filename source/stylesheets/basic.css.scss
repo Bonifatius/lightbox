@@ -62,7 +62,7 @@ div.asset
   }
 }
 
-img[data-lightbox]
+img.lightbox-image
 {
   cursor: -webkit-zoom-in;
   cursor:    -moz-zoom-in;
@@ -70,14 +70,14 @@ img[data-lightbox]
   background-size: cover;
   opacity: 1;
 
-  &.lightbox-animate
+  &.lightbox-image-animate
   {
     @include transition-property (transform);
     @include transition-duration(250ms);
     @include transition-timing-function(ease-in-out);
   }
 
-  &.lightbox-opened
+  &.lightbox-image-opened
   {
     cursor: -webkit-zoom-out;
     cursor:    -moz-zoom-out;

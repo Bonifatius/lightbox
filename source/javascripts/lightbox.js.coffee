@@ -1,7 +1,7 @@
 class Lightbox
 
   constructor: (@elements, @padding = 16) ->
-    @elements.attr 'data-lightbox', 'true'
+    @elements.addClass 'lightbox-image'
     @elements.click @click
 
     $('body').css 'position', 'relative'
@@ -19,20 +19,20 @@ class Lightbox
 
   show: (next = true) ->
     for element, element_index in @elements
-      if $(element).hasClass 'lightbox-opened'
+      if $(element).hasClass 'lightbox-image-opened'
         index = element_index
         break
     if index?
 
       element = $(@elements[index])
-      element.removeClass 'lightbox-animate'
-      element.removeClass 'lightbox-opened'
+      element.removeClass 'lightbox-image-animate'
+      element.removeClass 'lightbox-image-opened'
       element.css 'z-index', 'auto'
       @zoom(element, "translate(0, 0) scale(1, 1)")
 
       index = if next then (index + 1) % @elements.length else (index - 1 + @elements.length) % @elements.length
       element = $(@elements[index])
-      element.removeClass 'lightbox-animate'
+      element.removeClass 'lightbox-image-animate'
       @maximize(element)
 
   maximize: (element) ->
@@ -56,7 +56,7 @@ class Lightbox
     translate_y = Math.round($(window).scrollTop() + 0.5 * $(window).height() - element.offset().top - 0.5 * image_height) - ((image_height + zoom_height) % 2) * 0.5
 
     @clear()
-    element.addClass 'lightbox-opened'
+    element.addClass 'lightbox-image-opened'
     element.css 'z-index', 1
 
     @load(element)
@@ -64,7 +64,7 @@ class Lightbox
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
   minimize: (element, animate = true) ->
-    element.removeClass 'lightbox-opened'
+    element.removeClass 'lightbox-image-opened'
     @background.removeClass 'lightbox-background-show'
     if animate
       @background.addClass 'lightbox-background-close'
@@ -79,8 +79,8 @@ class Lightbox
 
   click: (event) =>
     element = $(event.target)
-    element.addClass 'lightbox-animate'
-    if element.hasClass 'lightbox-opened' then @minimize(element) else @maximize(element)
+    element.addClass 'lightbox-image-animate'
+    if element.hasClass 'lightbox-image-opened' then @minimize(element) else @maximize(element)
 
   clear: ->
     for element in @elements
@@ -89,8 +89,8 @@ class Lightbox
   collapse: (animate = true) ->
     for element in @elements
       element = $(element)
-      if element.hasClass 'lightbox-opened'
-        if animate then element.addClass 'lightbox-animate' else element.removeClass 'lightbox-animate'
+      if element.hasClass 'lightbox-image-opened'
+        if animate then element.addClass 'lightbox-image-animate' else element.removeClass 'lightbox-image-animate'
         @minimize(element, animate)
 
   load: (element) ->
