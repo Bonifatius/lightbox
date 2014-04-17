@@ -8,6 +8,17 @@ class Lightbox
     @background = $('<div class="lightbox-background"></div>').appendTo($('body'))
     @background.click => @collapse(true)
 
+    @icons = []
+
+    if @elements.length > 1
+      previous = $('<a class="lightbox-previous" href="/"></a>').appendTo($('body'))
+      previous.click => @show(false)
+      @icons.push previous
+
+      next = $('<a class="lightbox-next" href="/"></a>').appendTo($('body'))
+      next.click => @show(true)
+      @icons.push next
+
     $(window).resize => @collapse(false)
     $(window).scroll => @collapse(true) if Math.abs($(window).scrollTop() - @scroll_top || $(window).scrollTop()) > @padding
     $(window).keyup @keyup
@@ -34,6 +45,7 @@ class Lightbox
       element = $(@elements[index])
       element.removeClass 'lightbox-image-animate'
       @maximize(element)
+    false
 
   maximize: (element) ->
     @scroll_top = $(window).scrollTop()
@@ -63,6 +75,8 @@ class Lightbox
     @background.addClass 'lightbox-background-show'
     @zoom(element, "translate(#{translate_x}px, #{translate_y}px) scale(#{scale_x}, #{scale_y})")
 
+    $(icon).show() for icon in @icons
+
   minimize: (element, animate = true) ->
     element.removeClass 'lightbox-image-opened'
     @background.removeClass 'lightbox-background-show'
@@ -70,6 +84,8 @@ class Lightbox
       @background.addClass 'lightbox-background-close'
       setTimeout (=> @background.removeClass 'lightbox-background-close'), 250
     @zoom(element, "translate(0, 0) scale(1, 1)")
+
+    $(icon).hide() for icon in @icons
 
   zoom: (element, transform) ->
     element.css
