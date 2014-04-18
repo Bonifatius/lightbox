@@ -117,31 +117,36 @@ a
   {
     position: fixed;
     display: none;
-    width: 14px;
-    height: 14px;
-    margin-top: -7px;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
     top: 50%;
     z-index: 2;
+    background-size: 100%;
     background-repeat: no-repeat;
-    background-image: url(image_path('lightbox-icons.png'));
-    background-size: 14px 28px;
-
-    @include hidpi
-    {
-      background-image: url(image_path('lightbox-icons.retina.png'));
-    }
+    background-position: center center;
   }
 
   &.lightbox-previous
   {
     left: 0;
-    background-position: 0 0;
+    background-image: url(image_path('lightbox-previous.svg'));
+
+    html.no-svg &
+    {
+      background-image: url(image_path('lightbox-previous.png'));
+    }
   }
 
   &.lightbox-next
   {
     right: 0;
-    background-position: 0 -14px;
+    background-image: url(image_path('lightbox-next.svg'));
+
+    html.no-svg &
+    {
+      background-image: url(image_path('lightbox-next.png'));
+    }
   }
 }
 
